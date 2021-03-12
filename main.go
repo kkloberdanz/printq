@@ -23,6 +23,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"time"
 )
 
 func index(writer http.ResponseWriter, request *http.Request) {
@@ -38,6 +39,7 @@ func print_file(filename string) {
 		fmt.Printf("printing: '%s'\n", filename)
 	}
 
+	time.Sleep(10 * time.Minute)
 	err = os.Remove(filename)
 	if err != nil {
 		fmt.Printf("failed to remove file: '%s'\n", filename)
