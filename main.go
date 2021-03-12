@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"github.com/satori/go.uuid"
 	"io"
+	"log"
 	"net/http"
 	"os"
 	"os/exec"
@@ -82,5 +83,5 @@ func main() {
 		Addr:    "0.0.0.0:8080",
 		Handler: mux,
 	}
-	server.ListenAndServe()
+	log.Fatal(server.ListenAndServe())
 }
