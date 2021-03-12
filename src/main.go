@@ -34,7 +34,11 @@ func recieve_file(writer http.ResponseWriter, request *http.Request) {
 	// curl -X POST -F "file=@src/main.go" localhost:8080/print
 	file, header, err := request.FormFile("file")
 	if err != nil {
-		// TODO: how to send 4xx status code in response?
+		http.Error(
+			writer,
+			"file upload requires key of 'file'",
+			http.StatusBadRequest,
+		)
 		fmt.Fprintf(writer, "error\n")
 		return
 	}
