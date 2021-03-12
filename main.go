@@ -61,7 +61,7 @@ func recieve_file(writer http.ResponseWriter, request *http.Request) {
 	fmt.Printf("file name '%s'\n", header.Filename)
 	extension := filepath.Ext(header.Filename)
 	output_name := uuid.Must(uuid.NewV4(), nil)
-	output_path := fmt.Sprintf("printq/%s%s", output_name, extension)
+	output_path := fmt.Sprintf(".printq/%s%s", output_name, extension)
 	outf, err := os.Create(output_path)
 	if err != nil {
 		fmt.Println("failed to create output file")
