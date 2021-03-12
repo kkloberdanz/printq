@@ -60,7 +60,6 @@ func recieve_file(writer http.ResponseWriter, request *http.Request) {
 		fmt.Fprintf(writer, "error\n")
 		return
 	}
-	defer file.Close()
 	fmt.Printf("file name '%s'\n", header.Filename)
 	extension := filepath.Ext(header.Filename)
 	output_name := uuid.Must(uuid.NewV4(), nil)
@@ -70,8 +69,9 @@ func recieve_file(writer http.ResponseWriter, request *http.Request) {
 		fmt.Println("failed to create output file")
 		return
 	}
-	defer outf.Close()
 	io.Copy(outf, file)
+	outf.Close()
+	file.Close()
 	go print_file(output_path)
 }
 
