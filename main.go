@@ -48,7 +48,7 @@ func print_file(filename string) {
 	}
 }
 
-func recieve_file(writer http.ResponseWriter, request *http.Request) {
+func receive_file(writer http.ResponseWriter, request *http.Request) {
 	// you can upload file with:
 	// curl -X POST -F "file=@src/main.go" localhost:8080/print
 	file, header, err := request.FormFile("file")
@@ -79,7 +79,7 @@ func recieve_file(writer http.ResponseWriter, request *http.Request) {
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", index)
-	mux.HandleFunc("/print", recieve_file)
+	mux.HandleFunc("/print", receive_file)
 	server := &http.Server{
 		Addr:    "0.0.0.0:8080",
 		Handler: mux,
