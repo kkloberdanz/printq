@@ -17,7 +17,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/satori/go.uuid"
 	"io"
 	"log"
 	"net/http"
@@ -25,6 +24,8 @@ import (
 	"os/exec"
 	"path/filepath"
 	"time"
+
+	uuid "github.com/satori/go.uuid"
 )
 
 func index(writer http.ResponseWriter, request *http.Request) {
